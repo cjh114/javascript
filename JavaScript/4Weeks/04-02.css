@@ -1,0 +1,47 @@
+body {
+    background-color: aqua;
+}
+
+table {
+    width: 500px;
+    height: 500px;
+    border-radius: 10px;
+    background-color: white;
+    text-align: center;
+    
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+button {
+    width: 120px;
+    height: 70px;
+    font-size: 20px;
+    text-align: center;
+}
+
+div {
+    width: 220px;
+    height: 70px;
+    background-color:antiquewhite;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+}
+
+td {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+}
+
+tr {
+    width: 100%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
