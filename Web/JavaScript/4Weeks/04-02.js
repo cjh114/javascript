@@ -3,6 +3,8 @@ const button_2 = document.querySelector('.button_2')
 const button_3 = document.querySelector('.button_3')
 const button_4 = document.querySelector('.button_4')
 
+const button_5 = document.querySelector('.button_5')
+
 const button_1_text = document.querySelector('.button_1_text')
 const button_2_text = document.querySelector('.button_2_text')
 const button_3_text = document.querySelector('.button_3_text')
@@ -22,4 +24,11 @@ button_3.addEventListener('click', () => {
 
 button_4.addEventListener('click', () => {
     button_4_text.innerText = '+82'
+})
+
+button_5.addEventListener('click', () => {
+    button_1_text.innerText = ''
+    button_2_text.innerText = ''
+    button_3_text.innerText = ''
+    button_4_text.innerText = ''
 })
