@@ -1,0 +1,65 @@
+body {
+    background-color: antiquewhite;
+    margin: 0;
+}
+
+.box {
+    width: 500px;
+    height: 500px;
+    background-color:slateblue;
+    border-radius: 10px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.korean {
+    background-color: aqua;
+    width: 180px;
+    height: 70px;
+    font-size: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.english {
+    background-color:antiquewhite;
+    width: 250px;
+    height: 70px;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.block{
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+}
+
+button {
+    width: 180px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+}
+
+.change {
+    background-color: blue;
+    color: white;
+}
+
+.reset {
+    background-color: brown;
+    color: white;
+    margin-left: 20px;
+}
