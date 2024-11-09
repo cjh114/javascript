@@ -8,13 +8,12 @@ const openbtn = document.querySelector('.openbtn')
 const reset = document.querySelector('.reset')
 
 let password
-console.log(localStorage.getItem('password'))
 
 if (localStorage.getItem('password') == null) {
     password = [0, 0, 0, 0]
 }
 else {
-    password = localStorage.getItem('password')
+    password = JSON.parse(localStorage.getItem('password'))
 }
 
 setbtn.addEventListener('click', () => {
@@ -22,7 +21,7 @@ setbtn.addEventListener('click', () => {
     password[1] = pw2.value
     password[2] = pw3.value
     password[3] = pw4.value
-    localStorage.setItem('password', password)
+    localStorage.setItem('password', JSON.stringify(password))
     pw1.value = '0'
     pw2.value = '0'
     pw3.value = '0'
@@ -31,7 +30,6 @@ setbtn.addEventListener('click', () => {
 })
 
 openbtn.addEventListener('click', () => {
-    console.log(password[0])
     if ((password[0] == pw1.valueAsNumber) &&
         (password[1] == pw2.valueAsNumber) &&
         (password[2] == pw3.valueAsNumber) &&
