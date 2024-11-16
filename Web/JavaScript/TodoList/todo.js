@@ -108,6 +108,10 @@ const painttodo = (todo) => {
     todoElem.innerText = todo.content
     todoElem.addEventListener('dblclick', (event) => onDbclickTodo(event, todo.id))
 
+    const timeElem = document.createElement('div')
+    timeElem.classList.add('time')
+    timeElem.innerText = todo.time
+
     const delbtn = document.createElement('button')
     delbtn.classList.add('delBtn')
     delbtn.innerHTML='x'
@@ -120,6 +124,7 @@ const painttodo = (todo) => {
 
     todoitem.appendChild(checkbox)
     todoitem.appendChild(todoElem)
+    todoitem.appendChild(timeElem)
     todoitem.appendChild(delbtn)
     todolist.appendChild(todoitem)
 }
@@ -142,11 +147,17 @@ const painttodos = () => {
 
     filteredTodos.forEach((todo) => painttodo(todo))
     setLeftItems()
+
+    localStorage.setItem('todos', JSON.stringify(todos))
+    localStorage.setItem('isAllCompleted', JSON.stringify(isAllCompleted))
+    localStorage.setItem('id', JSON.stringify(id))
 }
 
 const appendtodos = (text) => {
     const newid = ++id
-    todos.push({id:newid, isCompleted:false, content:text})
+    let currentTime = new Date()
+    let currentDay = `${currentTime.getMonth()+1}.${currentTime.getDate()}`
+    todos.push({id:newid, isCompleted:false, content:text, time:currentDay})
     checkCompleteAll()
     painttodos()
 }
@@ -172,6 +183,16 @@ const onClickShowTodosType = (e) => {
 }
 
 const init = () => {
+    if (localStorage.getItem('todos') !== null &&
+        localStorage.getItem('isAllCompleted') !== null &&
+        localStorage.getItem('id') !== null){
+        todos = JSON.parse(localStorage.getItem('todos'))
+        isAllCompleted = JSON.parse(localStorage.getItem('isAllCompleted'))
+        id = JSON.parse(localStorage.getItem('id'))
+
+        painttodos()
+    }
+
     todoinput.addEventListener('keypress', (e)=>{
         if(e.key == 'Enter' && e.target.value != ''){
             appendtodos(e.target.value)
