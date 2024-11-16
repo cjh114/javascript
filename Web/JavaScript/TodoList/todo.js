@@ -1,11 +1,16 @@
 let todos = []
 let id = 0
 let isAllCompleted = false
+let currentShowType = 'all'
 
 const todolist = document.querySelector('.todo-list')
 const todoinput = document.querySelector('.todo-input')
 const leftItemElem = document.querySelector('.left-items')
 const completeAllbtn = document.querySelector('.complete-all-btn')
+const showAllBtn = document.querySelector('.show-all-btn')
+const showActiveBtn = document.querySelector('.show-active-btn')
+const showCompletedBtn = document.querySelector('.show-completed-btn')
+const clearcompletedBtn = document.querySelector('.clear-completed-btn')
 
 const onClickCompletedAll = () => {
     if (todos.length==0) return
@@ -119,9 +124,23 @@ const painttodo = (todo) => {
     todolist.appendChild(todoitem)
 }
 
+const clearCompletedTodos = () => {
+    todos = todos.filter(todo => !todo.isCompleted)
+    painttodos()
+}
+
 const painttodos = () => {
     todolist.innerHTML = ''
-    todos.forEach((todo) => painttodo(todo))
+
+    let filteredTodos = todos
+    if (currentShowType=='active'){
+        filteredTodos=todos.filter(todo => !todo.isCompleted)
+    }
+    else if (currentShowType=='completed'){
+        filteredTodos=todos.filter(todo => todo.isCompleted)
+    }
+
+    filteredTodos.forEach((todo) => painttodo(todo))
     setLeftItems()
 }
 
@@ -139,6 +158,19 @@ const deletetodo = (todoid) => {
     painttodos()
 }
 
+const onClickShowTodosType = (e) => {
+    const currentElem = e.target
+    const type = currentElem.dataset.type
+
+    if (currentShowType === type) return
+
+    const preBtn = document.querySelector(`.show-${currentShowType}-btn`)
+    preBtn.classList.remove('selected')
+    currentElem.classList.add('selected')
+    currentShowType = type
+    painttodos()
+}
+
 const init = () => {
     todoinput.addEventListener('keypress', (e)=>{
         if(e.key == 'Enter' && e.target.value != ''){
@@ -148,6 +180,11 @@ const init = () => {
     })
 
     completeAllbtn.addEventListener('click', onClickCompletedAll)
+    showActiveBtn.addEventListener('click',onClickShowTodosType)
+    showAllBtn.addEventListener('click',onClickShowTodosType)
+    showCompletedBtn.addEventListener('click',onClickShowTodosType)
+    clearcompletedBtn.addEventListener('click',clearCompletedTodos)
+
 }
 
 init()
